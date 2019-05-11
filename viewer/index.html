@@ -24,20 +24,21 @@
     <div id="MyViewerDiv"></div>
 
     <!-- The Viewer JS -->
-    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/three.min.js"></script>
-    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/viewer3D.min.js"></script>
-
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/viewer3D.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webvr-polyfill@latest/build/webvr-polyfill.js"></script>
+    
     <!-- Developer JS -->
     <script>
-        var viewer;
-        var options = {
-            env: 'AutodeskProduction',
-            accessToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiIwVHVnS09uaXM2NXdPdXNJMVBNM1NrT3dHdkNXREllaSIsImV4cCI6MTU1NzM1MjQzNiwic2NvcGUiOlsiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiI4WkRlUk9OczFqOVVkN2VpQlFTcEZPeU9nTmxpMDBWaVU3eHRRejhhSUo2RWxvRHB6cFJvc1dLYXhpYm9vaGhaIn0.v1MMHOqMPKEVeLFODZ7evZ8C3aJDuz5QAlgCUD6zp30'
-        };
-        var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YmltbGF1bmNoZXIucHJvamVjdHMvZmJ4LnppcA';
-        Autodesk.Viewing.Initializer(options, function onInitialized(){
-            Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
-        });
+	var viewer;
+    var options = {
+        env: 'AutodeskProduction',
+        accessToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJ2U0FIR01ZUGZCdGlRV3N1N0V1V2NWU1l2TGlaM0lyVSIsImV4cCI6MTU1NzYwNjk5Nywic2NvcGUiOlsiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiI3T1hHYVhsbjlhd2U4R1RaeDBSeHROdGVtNmNNSGZCNVMxRTdIRzVkcm9rVThMdVczMTVGNE9xaURMcE9qYkVSIn0.68htqs2UapVI6bWBPTSbEUOLzze540UsPWeMS3WO_qM'
+    };
+    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGF0YWhhY2syL2RhdGFoYWNrLnppcA';
+
+    Autodesk.Viewing.Initializer(options, function onInitialized(){
+        Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+    });
 
         /**
         * Autodesk.Viewing.Document.load() success callback.
@@ -52,7 +53,7 @@
                 return;
             }
 
-            // Choose any of the avialble viewables
+            // Choose any of the available viewables
             var initialViewable = viewables[0];
             var svfUrl = doc.getViewablePath(initialViewable);
             var modelOptions = {
@@ -60,7 +61,12 @@
             };
 
             var viewerDiv = document.getElementById('MyViewerDiv');
-            viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+            var config = {
+                extensions: ['Autodesk.Viewing.WebVR'],
+                experimental: [ 'webVR_orbitModel' ]
+            };
+
+            viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv, config);
             viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
         }
 

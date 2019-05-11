@@ -8,3 +8,7 @@ Please refer to https://forge.autodesk.com/en/docs/viewer/v2/reference/javascrip
 5. NOP_VIEWER.setGroundReflection(true) 	// Turn on/off ground reflection
 6. let color = new THREE.Vector4(0, 0.8901960784313725, 0, .9)
    NOP_VIEWER.setThemingColor(24, color) 	// Sets color on object
+7. NOP_VIEWER.getCamera().position // Get camera position
+8. // Set camera position
+9. // Get position of object
+10. NOP_VIEWER.model.getDefaultCamera() // Get default camera
