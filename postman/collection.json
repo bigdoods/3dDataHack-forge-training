@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "30890cf5-5db1-41a9-ae78-e6c64f44e2b8",
-		"name": "Forge Training",
+		"_postman_id": "1d9d439b-d8c1-4ee6-928b-6ab7c15a12e9",
+		"name": "3dDataHack-forge-training",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -78,7 +78,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"bucketKey\":\"bimlauncher.projects\",\r\n    \"policyKey\":\"transient\"\r\n}"
+					"raw": "{\r\n    \"bucketKey\": \"{{bucketKey}}\",\r\n    \"policyKey\":\"transient\"\r\n}"
 				},
 				"url": {
 					"raw": "{{hostName}}/oss/v2/buckets",
@@ -180,9 +180,6 @@
 		},
 		{
 			"name": "get job status",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -191,7 +188,10 @@
 						"value": "Bearer {{authToken}}"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/designdata/{{sourceURN}}/manifest",
 					"host": [
@@ -211,9 +211,6 @@
 		},
 		{
 			"name": "download derivative",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -222,7 +219,10 @@
 						"value": "Bearer {{authToken}}"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{sourceURN}}/manifest/{{derivativeURN}}",
 					"host": [
@@ -245,9 +245,6 @@
 		},
 		{
 			"name": "get all derivatives",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -256,7 +253,10 @@
 						"value": "Bearer {{authToken}}"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{sourceURN}}/manifest",
 					"host": [
@@ -278,9 +278,6 @@
 		},
 		{
 			"name": "get model metadata",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -289,7 +286,10 @@
 						"value": "Bearer {{authToken}}"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{derivativeURN}}/metadata",
 					"host": [
@@ -311,9 +311,6 @@
 		},
 		{
 			"name": "retrieve properties for model view",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -322,7 +319,10 @@
 						"value": "Bearer {{authToken}}"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{sourceURN}}/metadata/{{sceneGuid}}/properties",
 					"host": [

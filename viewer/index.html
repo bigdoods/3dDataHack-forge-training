@@ -32,14 +32,18 @@
 	var viewer;
     var options = {
         env: 'AutodeskProduction',
-        accessToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJ2U0FIR01ZUGZCdGlRV3N1N0V1V2NWU1l2TGlaM0lyVSIsImV4cCI6MTU1NzYwNjk5Nywic2NvcGUiOlsiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiI3T1hHYVhsbjlhd2U4R1RaeDBSeHROdGVtNmNNSGZCNVMxRTdIRzVkcm9rVThMdVczMTVGNE9xaURMcE9qYkVSIn0.68htqs2UapVI6bWBPTSbEUOLzze540UsPWeMS3WO_qM'
+        // Enter access_token value from Postman authenticate(2-legged) response
+        accessToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJ2U0FIR01ZUGZCdGlRV3N1N0V1V2NWU1l2TGlaM0lyVSIsImV4cCI6MTU1Nzc3MDQyMCwic2NvcGUiOlsiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiJTamlMQnNwUm91QVVMZHYxN25yS0k5R0Mxb2IyMm9TUUttZ1ptUFIzdDVEZ1NpajRXTzd5QWFZT0xHanBaZk9lIn0.xOLLbvtu1pi-Q59u4T4eeBH0ef9wwyxoIv0tim6f-WM'
     };
-    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGF0YWhhY2syL2RhdGFoYWNrLnppcA';
+    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGF0YWhhY2s0NC9kYXRhaGFjay56aXA'; // var documentId = 'urn:<sourceURN>'
 
     Autodesk.Viewing.Initializer(options, function onInitialized(){
         Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
     });
 
+    var loadStaticView = (viewer) => {
+        // viewer
+    } 
         /**
         * Autodesk.Viewing.Document.load() success callback.
         * Proceeds with model initialization.
@@ -65,9 +69,14 @@
                 extensions: ['Autodesk.Viewing.WebVR'],
                 experimental: [ 'webVR_orbitModel' ]
             };
-
+        
             viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv, config);
             viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+            
+            // Add viewer event listener
+            viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, (event) => {
+                loadStaticView(viewer);
+            })
         }
 
         /**
