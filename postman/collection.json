@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1d9d439b-d8c1-4ee6-928b-6ab7c15a12e9",
+		"_postman_id": "28369b77-6dce-43c6-a20d-04da390da066",
 		"name": "3dDataHack-forge-training",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -160,7 +160,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n         \"input\": {\r\n           \"urn\": \"dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YmltbGF1bmNoZXIucHJvamVjdHMvZmJ4LnppcA==\",\r\n           \"compressedUrn\": true,\r\n           \"rootFilename\": \"{{rootFileName}}\"\r\n         },\r\n         \"output\": {\r\n           \"destination\": {\r\n             \"region\": \"emea\"\r\n           },\r\n           \"formats\": [\r\n             {\r\n               \"type\": \"stl\",\r\n               \"views\": [\r\n                 \"2d\",\r\n                 \"3d\"\r\n               ]\r\n             }\r\n           ]\r\n         }\r\n}"
+					"raw": "{\r\n         \"input\": {\r\n           \"urn\": \"{{sourceURN}}\",\r\n           \"compressedUrn\": true,\r\n           \"rootFilename\": \"{{rootFileName}}\"\r\n         },\r\n         \"output\": {\r\n           \"destination\": {\r\n             \"region\": \"emea\"\r\n           },\r\n           \"formats\": [\r\n             {\r\n               \"type\": \"stl\",\r\n               \"views\": [\r\n                 \"2d\",\r\n                 \"3d\"\r\n               ]\r\n             }\r\n           ]\r\n         }\r\n}"
 				},
 				"url": {
 					"raw": "{{hostName}}/modelderivative/v2/designdata/job",
@@ -210,6 +210,39 @@
 			"response": []
 		},
 		{
+			"name": "get all derivatives",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{sourceURN}}/manifest",
+					"host": [
+						"{{hostName}}"
+					],
+					"path": [
+						"modelderivative",
+						"v2",
+						"regions",
+						"eu",
+						"designdata",
+						"{{sourceURN}}",
+						"manifest"
+					]
+				},
+				"description": "https://forge.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET/"
+			},
+			"response": []
+		},
+		{
 			"name": "download derivative",
 			"request": {
 				"method": "GET",
@@ -240,39 +273,6 @@
 					]
 				},
 				"description": "https://forge.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-derivativeurn-GET/"
-			},
-			"response": []
-		},
-		{
-			"name": "get all derivatives",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{authToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{hostName}}/modelderivative/v2/regions/eu/designdata/{{sourceURN}}/manifest",
-					"host": [
-						"{{hostName}}"
-					],
-					"path": [
-						"modelderivative",
-						"v2",
-						"regions",
-						"eu",
-						"designdata",
-						"{{sourceURN}}",
-						"manifest"
-					]
-				},
-				"description": "https://forge.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET/"
 			},
 			"response": []
 		},
