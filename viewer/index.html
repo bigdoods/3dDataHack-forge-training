@@ -33,9 +33,9 @@
     var options = {
         env: 'AutodeskProduction',
         // Enter access_token value from Postman authenticate(2-legged) response
-        accessToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJ2U0FIR01ZUGZCdGlRV3N1N0V1V2NWU1l2TGlaM0lyVSIsImV4cCI6MTU1Nzc3MDQyMCwic2NvcGUiOlsiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiJTamlMQnNwUm91QVVMZHYxN25yS0k5R0Mxb2IyMm9TUUttZ1ptUFIzdDVEZ1NpajRXTzd5QWFZT0xHanBaZk9lIn0.xOLLbvtu1pi-Q59u4T4eeBH0ef9wwyxoIv0tim6f-WM'
+        accessToken: "eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJlM0kzREkwTHRXMUtwZ0tpQllwR3BHTVdEWmFObEFkTCIsImV4cCI6MTU4NTMzNDkzNSwic2NvcGUiOlsiYWNjb3VudDpyZWFkIiwiZGF0YTpjcmVhdGUiLCJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIiwiYnVja2V0OnJlYWQiLCJidWNrZXQ6dXBkYXRlIiwiYnVja2V0OmNyZWF0ZSJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiJSbUozTXhMWFYxcXVscUhZSDJKaUQwWHNxdVdBRW9HUXp4V2lxNW50SnowTmRGT29sakVOemhjeWdEaDg4elp4In0.l85ZVn9IQHMELlC8jzgerdZNEIHc17xF0_gHhgDkYgU"
     };
-    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6ZGF0YWhhY2s0NC9kYXRhaGFjay56aXA'; // var documentId = 'urn:<sourceURN>'
+    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YW1nZW5fYnVja2V0L3RoaXNfaWZjX2ZpbGUuaWZj'; // var documentId = 'urn:<sourceURN>' ; the sourceURN is the part between "urn:adsk.viewing:fs.file:"&"/output/0/0.svf" on derivative URN from manifest
 
     Autodesk.Viewing.Initializer(options, function onInitialized(){
         Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
